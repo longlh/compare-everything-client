@@ -1,21 +1,19 @@
 import React from 'react';
+import PureComponent from './pure-component';
+import Winner from './winner';
+import Vote from './vote';
 
-class Voting extends React.Component {
+class Voting extends PureComponent {
 	constructor(props) {
 		super(props);
 	}
-	getPair() {
-		return this.props.pair || [];
-	}
 	render() {
 		return (
-			<div className='voting'>
-				{this.getPair().map(entry =>
-					<button key={entry}
-						onClick={() => this.props.vote(entry)}>
-						<h1>{entry}</h1>
-					</button>
-				)}
+			<div>
+				{this.props.winner ?
+					<Winner ref="winner" winner={this.props.winner} /> :
+					<Vote {...this.props} />
+				}
 			</div>
 		);
 	}
