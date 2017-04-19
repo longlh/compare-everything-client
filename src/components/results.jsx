@@ -1,5 +1,6 @@
 import React from 'react';
 import PureComponent from './pure-component';
+import Winner from './winner';
 
 class Results extends PureComponent {
 	constructor(props) {
@@ -17,15 +18,25 @@ class Results extends PureComponent {
 	}
 	render() {
 		return (
+			this.props.winner ?
+			<Winner ref="winner" winner={this.props.winner} /> :
 			<div className="results">
-				{this.getPair().map(entry =>
-					<div key={entry} className="entry">
-						<h1>{entry}</h1>
-						<div className="voteCount">
-							<span>{this.getVotes(entry)}</span>
+				<div className="tally">
+					{this.getPair().map(entry =>
+						<div key={entry} className="entry">
+							<h1>{entry}</h1>
+							<div className="voteCount">
+								<span>{this.getVotes(entry)}</span>
+							</div>
 						</div>
-					</div>
-				)}
+					)}
+				</div>
+				<div className="management">
+					<button ref="next" className="next"
+						onClick={this.props.next}>
+						<span>Next</span>
+					</button>
+				</div>
 			</div>
 		);
 	}
