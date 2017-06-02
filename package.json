@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --public=example.com",
     "test": "mocha --compilers js:babel-core/register --require ./test/test-helper \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
@@ -45,6 +45,9 @@
     "react-addons-pure-render-mixin": "^15.5.2",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
-    "react-router": "^2.0.0"
+    "react-redux": "^5.0.5",
+    "react-router": "^2.0.0",
+    "redux": "^3.6.0",
+    "socket.io-client": "^2.0.2"
   }
 }

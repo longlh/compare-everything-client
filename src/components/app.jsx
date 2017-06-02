@@ -15,10 +15,7 @@ class App extends React.Component {
 		super(props);
 	}
 	render() {
-		return React.cloneElement(this.props.children, {
-			pair,
-			tally: tally
-		});
+		return this.props.children;
 	}
 }
 

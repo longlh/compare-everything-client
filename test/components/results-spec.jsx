@@ -7,7 +7,7 @@ import {
 	Simulate
 } from 'react-dom/test-utils';
 import {List, Map} from 'immutable';
-import Results from '../../src/components/results';
+import {Results} from '../../src/components/results';
 
 describe('Results', () => {
 	it('renders entries with vote counts or zero', () => {
