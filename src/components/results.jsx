@@ -2,6 +2,7 @@ import React from 'react';
 import PureComponent from './pure-component';
 import {connect} from 'react-redux';
 import Winner from './winner';
+import * as actionCreators from '../action-creators';
 
 class Results extends PureComponent {
 	constructor(props) {
@@ -51,7 +52,10 @@ function mapStateToProps(state) {
 	};
 }
 
-const ResultsContainer = connect(mapStateToProps)(Results);
+const ResultsContainer = connect(
+	mapStateToProps,
+	actionCreators
+)(Results);
 
 export {
 	Results,

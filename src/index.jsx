@@ -5,22 +5,29 @@ import {
 	Route,
 	hashHistory
 } from 'react-router';
-import {createStore} from 'redux';
+import {
+	createStore,
+	applyMiddleware
+} from 'redux';
 import {Provider} from 'react-redux';
 import io from 'socket.io-client';
 import reducer from './reducer';
+import {setState} from './action-creators';
+import remoteActionMiddleware from './remote-action-middleware';
 import App from './components/app';
 import {ResultsContainer} from './components/results';
 import {VotingContainer} from './components/voting';
 
-const store = createStore(reducer);
-
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
+
+const createStoreWithMiddleware = applyMiddleware(
+	remoteActionMiddleware(socket)
+)(createStore);
+const store = createStoreWithMiddleware(reducer);
+
 socket.on('state', state => {
-	store.dispatch({
-		type: 'SET_STATE',
-		state
-	});
+	console.log(state);
+	store.dispatch(setState(state));
 });
 
 const routes = (
